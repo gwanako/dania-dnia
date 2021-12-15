@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8"/>
+<title>Dania dnia</title>
+<link rel="stylesheet" href="https://get.mavo.io/mavo.css"/>
+<script src="https://get.mavo.io/mavo.js"></script>
+<style>
+#box {
+    box-shadow: 5px 5px 20px #000;
+    width: 1387px;
+    height: 1827px;
+    margin: 20px;
+    transform-origin: top left;
+}
+#content {
+    position: relative;
+    width: 1387px;
+    height: 1827px;
+    background-image: url('https://i.ibb.co/NpHDj7V/lunch-bar-bg-fix.jpg');
+    box-sizing: border-box;
+    padding: 100px 500px 700px 110px;
+    font-size: 40px;
+    font-family: 'Times New Roman', 'times', serif;
+}
+h1 {
+    text-align: center;
+    color: #90935c;
+    font-weight: normal;
+    letter-spacing: 10px;
+    margin: 0 0 .75em;
+}
+.meal {
+    margin: 1em 0;
+    line-height: 1.5em;
+}
+.item {
+    margin: 0;
+}
+.wariant {
+    margin: .25em 0 0 .5em;
+    font-size: smaller;
+}
+.name {
+    color: #90935c;
+    font-weight: normal;
+}
+.desc {
+    display: inline-block;
+}
+.price {
+    float: right;
+    text-align: right;
+    white-space: nowrap;
+}
+</style>
+</head>
+<body>
+    
+<div mv-app="menu" mv-storage="local">
+
+<div class="mv-bar mv-ui">
+    <input type="range" property="zoom" value="0.6" min="0.2" max="1.0" step="0.1" />
+    <button type="button" onclick="html2png()">Generuj grafikę</button>
+</div>
+    
+<div id="box" style="transform: scale([zoom]);">
+    <div id="content">
+        <h1 property="tytul">DANIA DNIA</h1>
+        <div class="meal" property="danie" mv-multiple>
+            <p class="item">
+                <strong class="name" property="nazwa">Danie</strong>
+                <span class="desc" property="opis">opis</span>
+                <span class="price" property="cena">12,00 zł</span>
+            </p>
+            <p class="wariant" mv-multiple>
+                <span property="wariant">wariant</span>
+            </p>
+        </div>
+    </div>
+</div>
+    
+</div>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js" integrity="sha512-01CJ9/g7e8cUmY0DFTMcUw/ikS799FHiOA0eyHsUWfOetgbx/t6oV4otQ5zXKQyIrQGTHSmRVPIgrgLcZi/WMA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js" integrity="sha512-csNcFYJniKjJxRWRV1R7fvnXrycHP6qDR21mgz1ZP55xY5d+aHLfo9/FcGDQLfn2IfngbAHd8LdfsagcCqgTcQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+window.html2png = () => domtoimage.toBlob(document.getElementById('content')).then(blob => window.saveAs(blob, window.prompt('Nazwa pliku','danie_dnia.png')));
+
+Mavo.Locale.register("pl", {
+"edit": "Edytuj",
+"editing": "Edytowanie",
+"save": "Zapisz",
+"import": "Import",
+"export": "Eksport",
+"clear": "Wyczyść",
+"loading": "Ładowanie",
+"saving": "Zapisywanie",
+"dismiss": "Porzuć",
+"add-item": "Dodaj {name}",
+"add-item-before": "Dodaj {name} przed",
+"add-item-after": "Dodaj {name} po",
+"drag-to-reorder": "Przeciągnij by zmień kolejność '{name}'",
+"delete-item": "Usuń {name}",
+"item-deleted": "Usunięto {name}",
+"n-items": "{n} elementów '{name}'",
+"undo": "Cofnij",
+"delete-confirmation": "Na pewno usunąć?"
+});
+</script>
+</body>
+</html>
